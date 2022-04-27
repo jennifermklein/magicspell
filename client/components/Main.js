@@ -34,8 +34,9 @@ const alphabet = [
 
 const Main = () => {
   const [letters, setLetters] = React.useState({
-    pool: alphabet, // where letters come from
-    pen: alphabet.map((letter) => letter.toLowerCase()), // where letters go to
+    1: alphabet, // where letters come from
+    2: [],
+    // pen: alphabet.map((letter) => letter.toLowerCase()), // where letters go to
   });
 
   return (

@@ -12,8 +12,8 @@ export const LetterList = ({ listId, listType, letters }) => {
       {(dropProvided) => (
         <div {...dropProvided.droppableProps}>
           <div>
-            <div>
-              <div style={{ display: "flex" }} ref={dropProvided.innerRef}>
+            <div className="list-container">
+              <div className="letter-list" ref={dropProvided.innerRef}>
                 {letters.map((letter, index) => (
                   <Draggable key={letter} draggableId={letter} index={index}>
                     {(dragProvided) => (

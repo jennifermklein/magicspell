@@ -1,68 +1,251 @@
-import React from "react";
-import { DragDropContext } from "react-beautiful-dnd";
-import reorderLetters from "../helpers/reorder";
+import React, { Component } from "react";
+import { v4 as uuid } from "uuid";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { LetterList } from "./LetterList";
 
-const alphabet = [
-  "A",
-  "B",
-  "C",
-  "D",
-  "E",
-  "F",
-  "G",
-  "H",
-  "I",
-  "J",
-  "K",
-  "L",
-  "M",
-  "N",
-  "O",
-  "P",
-  "Q",
-  "R",
-  "S",
-  "T",
-  "U",
-  "V",
-  "W",
-  "X",
-  "Y",
-  "Z",
+// a little function to help us with reordering the result
+const reorder = (list, startIndex, endIndex) => {
+  const result = Array.from(list);
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed);
+
+  return result;
+};
+/**
+ * Moves an item from one list to another list.
+ */
+const copy = (source, destination, droppableSource, droppableDestination) => {
+  const sourceClone = Array.from(source);
+  const destClone = Array.from(destination);
+  const item = sourceClone[droppableSource.index];
+
+  destClone.splice(droppableDestination.index, 0, { ...item, id: uuid() });
+  return destClone;
+};
+
+const move = (source, destination, droppableSource, droppableDestination) => {
+  const sourceClone = Array.from(source);
+  const destClone = Array.from(destination);
+  const [removed] = sourceClone.splice(droppableSource.index, 1);
+
+  destClone.splice(droppableDestination.index, 0, removed);
+
+  const result = {};
+  result[droppableSource.droppableId] = sourceClone;
+  result[droppableDestination.droppableId] = destClone;
+
+  return result;
+};
+
+const ITEMS = [
+  {
+    id: uuid(),
+    content: "A",
+  },
+  {
+    id: uuid(),
+    content: "B",
+  },
+  {
+    id: uuid(),
+    content: "C",
+  },
+  {
+    id: uuid(),
+    content: "D",
+  },
+  {
+    id: uuid(),
+    content: "E",
+  },
+  {
+    id: uuid(),
+    content: "F",
+  },
+  {
+    id: uuid(),
+    content: "G",
+  },
+  {
+    id: uuid(),
+    content: "H",
+  },
+  {
+    id: uuid(),
+    content: "I",
+  },
+  {
+    id: uuid(),
+    content: "J",
+  },
+  {
+    id: uuid(),
+    content: "K",
+  },
+  {
+    id: uuid(),
+    content: "L",
+  },
+  {
+    id: uuid(),
+    content: "M",
+  },
+  {
+    id: uuid(),
+    content: "N",
+  },
+  {
+    id: uuid(),
+    content: "O",
+  },
+  {
+    id: uuid(),
+    content: "P",
+  },
+  {
+    id: uuid(),
+    content: "Q",
+  },
+  {
+    id: uuid(),
+    content: "R",
+  },
+  {
+    id: uuid(),
+    content: "S",
+  },
+  {
+    id: uuid(),
+    content: "T",
+  },
+  {
+    id: uuid(),
+    content: "U",
+  },
+  {
+    id: uuid(),
+    content: "V",
+  },
+  {
+    id: uuid(),
+    content: "W",
+  },
+  {
+    id: uuid(),
+    content: "X",
+  },
+  {
+    id: uuid(),
+    content: "Y",
+  },
+  {
+    id: uuid(),
+    content: "Z",
+  },
 ];
 
-const Main = () => {
-  const [letters, setLetters] = React.useState({
-    1: alphabet, // where letters come from
-    2: [],
-    // pen: alphabet.map((letter) => letter.toLowerCase()), // where letters go to
-  });
+class Main extends Component {
+  state = {
+    [uuid()]: ["A"],
+    [uuid()]: ["B"],
+  };
+  onDragEnd = (result) => {
+    const { source, destination } = result;
 
-  return (
-    <DragDropContext
-      onDragEnd={({ destination, source }) => {
-        console.log(source, destination);
-        // dropped outside the list
-        if (!destination) {
-          return;
-        }
-        setLetters(reorderLetters(letters, source, destination));
-      }}
-    >
-      <div>
-        {Object.entries(letters).map(([list, letter]) => (
-          <LetterList
-            internalScroll
-            key={list}
-            letters={letter} // ?
-            listId={list}
-            listType="CARD"
-          />
-        ))}
-      </div>
-    </DragDropContext>
-  );
-};
+    // dropped outside the list
+    if (!destination) {
+      return;
+    }
+
+    switch (source.droppableId) {
+      case destination.droppableId:
+        this.setState({
+          [destination.droppableId]: reorder(
+            this.state[source.droppableId],
+            source.index,
+            destination.index
+          ),
+        });
+        break;
+      case "ITEMS":
+        this.setState({
+          [destination.droppableId]: copy(
+            ITEMS,
+            this.state[destination.droppableId],
+            source,
+            destination
+          ),
+        });
+        break;
+      default:
+        this.setState(
+          move(
+            this.state[source.droppableId],
+            this.state[destination.droppableId],
+            source,
+            destination
+          )
+        );
+        break;
+    }
+  };
+
+  //   addList = (e) => {
+  //     this.setState({ [uuid()]: [] });
+  //   };
+
+  render() {
+    return (
+      <DragDropContext onDragEnd={this.onDragEnd}>
+        <Droppable droppableId="ITEMS" isDropDisabled={true}>
+          {(provided, snapshot) => (
+            <div className="list-container">
+              <div
+                ref={provided.innerRef}
+                className="letter-list"
+                // isDraggingOver={snapshot.isDraggingOver}
+              >
+                {ITEMS.map((item, index) => (
+                  <Draggable key={item.id} draggableId={item.id} index={index}>
+                    {(provided, snapshot) => (
+                      <React.Fragment>
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          // isDragging={snapshot.isDragging}
+                          style={provided.draggableProps.style}
+                        >
+                          {item.content}
+                        </div>
+                        {snapshot.isDragging && <div>{item.content}</div>}
+                      </React.Fragment>
+                    )}
+                  </Draggable>
+                ))}
+              </div>
+            </div>
+          )}
+        </Droppable>
+        <div>
+          {/* <div onClick={this.addList}>
+            <svg width="24" height="24" viewBox="0 0 24 24">
+              <path
+                fill="currentColor"
+                d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"
+              />
+            </svg>
+            <div>Add List</div>
+          </div> */}
+          {Object.keys(this.state).map((list, i) => {
+            return (
+              <LetterList key={list} listId={list} letters={this.state[list]} />
+            );
+          })}
+        </div>
+      </DragDropContext>
+    );
+  }
+}
 
 export default Main;

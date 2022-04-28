@@ -1,5 +1,5 @@
 html {
-  font-size: 36pt;
+  font-size: 34pt;
 }
 
 body {
@@ -38,4 +38,5 @@ form div {
   height: 1rem;
   padding: .25rem;
   margin: .25rem auto;
+  gap: 5px;
 }

@@ -1,42 +1,26 @@
 import React from "react";
 import { Droppable, Draggable, DroppableProvided } from "react-beautiful-dnd";
 
-export const LetterList = ({ listId, letters }) => {
+export const LetterPool = ({ listId, listType, alpha }) => {
   return (
-    <Droppable
-      droppableId={listId}
-      direction="horizontal"
-      isCombineEnabled={false}
-    >
-      {(dropProvided) => (
-        <div {...dropProvided.droppableProps}>
-          <div>
-            <div className="list-container">
-              <div className="letter-list" ref={dropProvided.innerRef}>
-                {letters.map((letter, index) => (
-                  <Draggable
-                    key={letter.id}
-                    draggableId={letter.id}
-                    index={index}
-                  >
-                    {(dragProvided) => (
-                      <div
-                        {...dragProvided.dragHandleProps}
-                        {...dragProvided.draggableProps}
-                        ref={dragProvided.innerRef}
-                      >
-                        <div>{letter.content}</div>
-                      </div>
-                    )}
-                  </Draggable>
-                ))}
-                {dropProvided.placeholder}
+    <div className="list-container">
+      <div className="letter-list">
+        {alpha.map((letter, index) => (
+          <div key={letter}>{letter}</div>
+          /* <Draggable key={letter} draggableId={letter} index={index}>
+            {(dragProvided) => (
+              <div
+                {...dragProvided.dragHandleProps}
+                {...dragProvided.draggableProps}
+                ref={dragProvided.innerRef}
+              >
+                <div>{letter}</div>
               </div>
-            </div>
-          </div>
-        </div>
-      )}
-    </Droppable>
+            )}
+          </Draggable> */
+        ))}
+      </div>
+    </div>
   );
 };
 

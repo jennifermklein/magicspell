@@ -11,6 +11,15 @@ class Main extends Component {
     [uuid()]: [],
     [uuid()]: [],
   };
+
+  getWord = (destination) => {
+    const word = this.state[destination.droppableId].reduce(
+      (accum, item) => accum + item.content,
+      ""
+    );
+    console.log(word);
+  };
+
   onDragEnd = (result) => {
     const { source, destination } = result;
 
@@ -50,6 +59,7 @@ class Main extends Component {
         );
         break;
     }
+    this.getWord(destination);
   };
 
   //   addList = (e) => {

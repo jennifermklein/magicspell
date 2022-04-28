@@ -36,6 +36,7 @@ export const LetterPool = ({ listId, ITEMS }) => {
               </Draggable>
             ))}
           </div>
+          {provided.placeholder}
         </div>
       )}
     </Droppable>

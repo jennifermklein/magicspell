@@ -18,7 +18,11 @@ router.post("/", async (req, res, next) => {
     const request = {
       input: { text: req.body.word },
       // Select the language and SSML voice gender (optional)
-      voice: { languageCode: "en-US", ssmlGender: "NEUTRAL" },
+      voice: {
+        languageCode: "en-US",
+        name: "en-US-Standard-F",
+        ssmlGender: "FEMALE",
+      },
       // select the type of audio encoding
       audioConfig: { audioEncoding: "MP3" },
     };
@@ -27,9 +31,9 @@ router.post("/", async (req, res, next) => {
     const [response] = await client.synthesizeSpeech(request);
 
     // Write the binary audio content to a local file
-    const writeFile = util.promisify(fs.writeFile);
-    await writeFile("output.mp3", response.audioContent, "binary");
-    console.log("Audio content written to file: output.mp3");
+    // const writeFile = util.promisify(fs.writeFile);
+    // await writeFile("output.mp3", response.audioContent, "binary");
+    // console.log("Audio content written to file: output.mp3");
 
     // sent the data back
     res.send(response);

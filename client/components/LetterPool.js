@@ -1,76 +1,43 @@
 import React from "react";
 import { Droppable, Draggable, DroppableProvided } from "react-beautiful-dnd";
 
-export const LetterPool = ({ listId, listType, alpha }) => {
+export const LetterPool = ({ listId, ITEMS }) => {
   return (
-    <div className="list-container">
-      <div className="letter-list">
-        {alpha.map((letter, index) => (
-          <div key={letter}>{letter}</div>
-          /* <Draggable key={letter} draggableId={letter} index={index}>
-            {(dragProvided) => (
-              <div
-                {...dragProvided.dragHandleProps}
-                {...dragProvided.draggableProps}
-                ref={dragProvided.innerRef}
-              >
-                <div>{letter}</div>
-              </div>
-            )}
-          </Draggable> */
-        ))}
-      </div>
-    </div>
+    <Droppable
+      droppableId={listId}
+      isDropDisabled={true}
+      direction="horizontal"
+      isCombineEnabled={false}
+      ITEMS={ITEMS}
+    >
+      {(provided, snapshot) => (
+        <div className="list-container">
+          <div
+            ref={provided.innerRef}
+            className="letter-list"
+            // isDraggingOver={snapshot.isDraggingOver}
+          >
+            {ITEMS.map((item, index) => (
+              <Draggable key={item.id} draggableId={item.id} index={index}>
+                {(provided, snapshot) => (
+                  <React.Fragment>
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      // isDragging={snapshot.isDragging}
+                      style={provided.draggableProps.style}
+                    >
+                      {item.content}
+                    </div>
+                    {snapshot.isDragging && <div>{item.content}</div>}
+                  </React.Fragment>
+                )}
+              </Draggable>
+            ))}
+          </div>
+        </div>
+      )}
+    </Droppable>
   );
 };
-
-// export class LetterList extends React.Component {
-//   static defaultProps = { isCombineEnabled: false };
-
-//   renderBoard = (dropProvided) => {
-//     const { letters } = this.props;
-//     return (
-//       <div>
-//         <div style={{ display: "flex" }} ref={dropProvided.innerRef}>
-//           {letters.map((letter, index) => (
-//             <Draggable key={letter} draggableId={letter} index={index}>
-//               {(dragProvided) => (
-//                 <div
-//                   {...dragProvided.dragHandleProps}
-//                   {...dragProvided.draggableProps}
-//                   ref={dragProvided.innerRef}
-//                 >
-//                   <div>{letter}</div>
-//                 </div>
-//               )}
-//             </Draggable>
-//           ))}
-//           {dropProvided.placeholder}
-//         </div>
-//       </div>
-//     );
-//   };
-
-//   render() {
-//     const { listId, listType, internalScroll, isCombineEnabled } = this.props;
-
-//     return (
-//       <Droppable
-//         droppableId={listId}
-//         type={listType}
-//         direction="horizontal"
-//         isCombineEnabled={isCombineEnabled}
-//       >
-//         {(dropProvided) => (
-//           <div {...dropProvided.droppableProps}>
-//             {internalScroll ? (
-//               <div>{this.renderBoard(dropProvided)}</div>
-//             ) : (
-//               this.renderBoard(dropProvided)
-//             )}
-//           </div>
-//         )}
-//       </Droppable>
-//     );
-//   }
-// }

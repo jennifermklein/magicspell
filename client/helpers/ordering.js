@@ -9,6 +9,13 @@ export const reorder = (list, startIndex, endIndex) => {
   return result;
 };
 
+export const remove = (list, index) => {
+  const result = Array.from(list);
+  result.splice(index, 1);
+
+  return result;
+};
+
 export const copy = (
   source,
   destination,

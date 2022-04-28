@@ -3,24 +3,34 @@ module.exports = router;
 // Imports the Google Cloud client library
 const textToSpeech = require("@google-cloud/text-to-speech");
 // Import other required libraries
-const fs = require("fs");
-const util = require("util");
+// const fs = require("fs");
+// const util = require("util");
+
+// const letterSounds = {
+//   A: "ɑ:",
+//   B: "by",
+//   J: "dʒ",
+// };
 
 router.post("/", async (req, res, next) => {
-  async function quickStart(text) {}
-
   try {
-    console.log(req.body.word);
+    const text = req.body.word;
+    // const sound = letterSounds[text];
+    // console.log(text, sound);
+
     // create a new client
     const client = new textToSpeech.TextToSpeechClient();
 
     // Construct the request
     const request = {
-      input: { text: req.body.word },
+      input: {
+        // ssml: `<speak><phoneme alphabet="ipa" ph=${sound}>${text.toLowerCase()}</phoneme></speak>`,
+        text,
+      },
       // Select the language and SSML voice gender (optional)
       voice: {
         languageCode: "en-US",
-        name: "en-US-Standard-F",
+        name: "en-US-Wavenet-F",
         ssmlGender: "FEMALE",
       },
       // select the type of audio encoding

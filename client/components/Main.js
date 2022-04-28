@@ -4,7 +4,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { LetterList } from "./LetterList";
 import { LetterPool } from "./LetterPool";
 import { AddList } from "./AddList";
-import { reorder, copy, move } from "../helpers/ordering";
+import { reorder, copy, move, remove } from "../helpers/ordering";
 import { ITEMS } from "../helpers/data";
 import { getAudioThunk } from "../helpers/thunks";
 import axios from "axios";
@@ -20,6 +20,15 @@ class Main extends Component {
 
     // dropped outside the list
     if (!destination) {
+      this.setState(
+        {
+          [source.droppableId]: remove(
+            this.state[source.droppableId],
+            source.index
+          ),
+        },
+        () => this.getWord(source)
+      );
       return;
     }
 

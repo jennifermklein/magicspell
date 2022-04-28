@@ -3,6 +3,7 @@ import { v4 as uuid } from "uuid";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { LetterList } from "./LetterList";
 import { LetterPool } from "./LetterPool";
+import { AddList } from "./AddList";
 import { reorder, copy, move } from "../helpers/ordering";
 import { ITEMS } from "../helpers/data";
 
@@ -62,24 +63,16 @@ class Main extends Component {
     this.getWord(destination);
   };
 
-  //   addList = (e) => {
-  //     this.setState({ [uuid()]: [] });
-  //   };
+  addList = (e) => {
+    this.setState({ [uuid()]: [] });
+  };
 
   render() {
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <LetterPool listId="ITEMS" ITEMS={ITEMS} />
+        <AddList addList={this.addList} />
         <div>
-          {/* <div onClick={this.addList}>
-            <svg width="24" height="24" viewBox="0 0 24 24">
-              <path
-                fill="currentColor"
-                d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"
-              />
-            </svg>
-            <div>Add List</div>
-          </div> */}
           {Object.keys(this.state).map((list, i) => {
             return (
               <LetterList key={list} listId={list} letters={this.state[list]} />

@@ -6,6 +6,7 @@ import { LetterPool } from "./LetterPool";
 import { AddList } from "./AddList";
 import { reorder, copy, move } from "../helpers/ordering";
 import { ITEMS } from "../helpers/data";
+import { getAudioThunk } from "../helpers/thunks";
 import axios from "axios";
 import { connect } from "react-redux";
 
@@ -94,30 +95,28 @@ class Main extends Component {
   }
 }
 
-const getAudioThunk = (word) => async (dispatch) => {
-  console.log("in thunk for", word);
-  const response = await axios.post("/api/audio", { word });
-  console.log(response.data.audioContent);
+// const getAudioThunk = (word) => async (dispatch) => {
+//   const response = await axios.post("/api/audio", { word });
 
-  const context = new (window.AudioContext || window.webkitAudioContext)();
+//   const context = new (window.AudioContext || window.webkitAudioContext)();
 
-  function playByteArray(bytes) {
-    var buffer = new Uint8Array(bytes.length);
-    buffer.set(new Uint8Array(bytes), 0);
-    context.decodeAudioData(buffer.buffer, play);
-  }
+//   function playByteArray(bytes) {
+//     var buffer = new Uint8Array(bytes.length);
+//     buffer.set(new Uint8Array(bytes), 0);
+//     context.decodeAudioData(buffer.buffer, play);
+//   }
 
-  function play(audioBuffer) {
-    var source = context.createBufferSource();
-    source.buffer = audioBuffer;
-    source.connect(context.destination);
-    source.start(0);
-  }
+//   function play(audioBuffer) {
+//     var source = context.createBufferSource();
+//     source.buffer = audioBuffer;
+//     source.connect(context.destination);
+//     source.start(0);
+//   }
 
-  playByteArray(response.data.audioContent.data);
+//   playByteArray(response.data.audioContent.data);
 
-  return response.data;
-};
+//   return response.data;
+// };
 
 const mapDispatch = (dispatch) => {
   return {

@@ -31,23 +31,29 @@ class Main extends Component {
 
     switch (source.droppableId) {
       case destination.droppableId:
-        this.setState({
-          [destination.droppableId]: reorder(
-            this.state[source.droppableId],
-            source.index,
-            destination.index
-          ),
-        });
+        this.setState(
+          {
+            [destination.droppableId]: reorder(
+              this.state[source.droppableId],
+              source.index,
+              destination.index
+            ),
+          },
+          () => this.getWord(destination)
+        );
         break;
       case "ITEMS":
-        this.setState({
-          [destination.droppableId]: copy(
-            ITEMS,
-            this.state[destination.droppableId],
-            source,
-            destination
-          ),
-        });
+        this.setState(
+          {
+            [destination.droppableId]: copy(
+              ITEMS,
+              this.state[destination.droppableId],
+              source,
+              destination
+            ),
+          },
+          () => this.getWord(destination)
+        );
         break;
       default:
         this.setState(
@@ -56,11 +62,11 @@ class Main extends Component {
             this.state[destination.droppableId],
             source,
             destination
-          )
+          ),
+          () => this.getWord(destination)
         );
         break;
     }
-    this.getWord(destination);
   };
 
   addList = (e) => {
@@ -72,13 +78,11 @@ class Main extends Component {
       <DragDropContext onDragEnd={this.onDragEnd}>
         <LetterPool listId="ITEMS" ITEMS={ITEMS} />
         <AddList addList={this.addList} />
-        <div>
-          {Object.keys(this.state).map((list, i) => {
-            return (
-              <LetterList key={list} listId={list} letters={this.state[list]} />
-            );
-          })}
-        </div>
+        {Object.keys(this.state).map((list, i) => {
+          return (
+            <LetterList key={list} listId={list} letters={this.state[list]} />
+          );
+        })}
       </DragDropContext>
     );
   }

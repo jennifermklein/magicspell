@@ -40,3 +40,11 @@ form div {
   margin: .25rem auto;
   gap: 5px;
 }
+
+.dragging {
+  opacity: 100%;
+}
+
+.clone {
+  opacity: 50%;
+}

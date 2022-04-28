@@ -6,19 +6,12 @@ import { LetterPool } from "./LetterPool";
 import { AddList } from "./AddList";
 import { reorder, copy, move } from "../helpers/ordering";
 import { ITEMS } from "../helpers/data";
+import axios from "axios";
+import { connect } from "react-redux";
 
 class Main extends Component {
   state = {
     [uuid()]: [],
-    [uuid()]: [],
-  };
-
-  getWord = (destination) => {
-    const word = this.state[destination.droppableId].reduce(
-      (accum, item) => accum + item.content,
-      ""
-    );
-    console.log(word);
   };
 
   onDragEnd = (result) => {
@@ -69,6 +62,19 @@ class Main extends Component {
     }
   };
 
+  getWord = (destination) => {
+    const word = this.state[destination.droppableId].reduce(
+      (accum, item) => accum + item.content,
+      ""
+    );
+    console.log(word);
+    this.props.getAudio(word);
+    // const response = await axios.post("./audio",word);
+    //use thunk, pass in word to post route
+    // in api route, res.send response from synthesis request
+    // play audio within thunk
+  };
+
   addList = (e) => {
     this.setState({ [uuid()]: [] });
   };
@@ -88,4 +94,16 @@ class Main extends Component {
   }
 }
 
-export default Main;
+const getAudioThunk = (word) => async (dispatch) => {
+  console.log("in thunk for", word);
+  const response = await axios.post("/api/audio", { word });
+  return response.data;
+};
+
+const mapDispatch = (dispatch) => {
+  return {
+    getAudio: (word) => dispatch(getAudioThunk(word)),
+  };
+};
+
+export default connect(null, mapDispatch)(Main);

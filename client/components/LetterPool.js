@@ -4,10 +4,10 @@ import { Droppable, Draggable, DroppableProvided } from "react-beautiful-dnd";
 export const LetterPool = ({ listId, ITEMS }) => {
   return (
     <Droppable
-      droppableId={listId}
-      isDropDisabled={true}
       direction="horizontal"
+      droppableId={listId}
       isCombineEnabled={false}
+      isDropDisabled={true}
       ITEMS={ITEMS}
     >
       {(provided, snapshot) => (
@@ -22,15 +22,22 @@ export const LetterPool = ({ listId, ITEMS }) => {
                 {(provided, snapshot) => (
                   <React.Fragment>
                     <div
+                      className={`item ${
+                        snapshot.isDragging ? "dragging" : ""
+                      }`}
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                       // isDragging={snapshot.isDragging}
-                      style={provided.draggableProps.style}
+                      // style={provided.draggableProps.style}
                     >
                       {item.content}
                     </div>
-                    {snapshot.isDragging && <div>{item.content}</div>}
+                    {snapshot.isDragging && (
+                      <div>
+                        <div className="item clone">{item.content}</div>
+                      </div>
+                    )}
                   </React.Fragment>
                 )}
               </Draggable>

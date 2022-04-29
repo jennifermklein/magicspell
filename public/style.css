@@ -33,7 +33,7 @@ body, #app {
   user-select: none;
   box-shadow: 0 0 2px gray;
   font-family: 'Aleo', serif;
-  color:#502471;
+  color:#57227e;
   /* text-shadow: 0 0 2px black; */
   padding: 0 .75rem;
   background-color: #6eeb831e;
@@ -133,6 +133,6 @@ button:hover {
 
 #logo {
   width: 50%;
-  margin-bottom: 4%;
+  margin: 2% 0 4% 0;
 }
 

@@ -31,7 +31,7 @@ class Main extends Component {
               source.index
             ),
           },
-          () => this.getWord(source)
+          () => this.getWord(source.droppableId)
         );
       }
       return;
@@ -121,7 +121,7 @@ class Main extends Component {
           <LetterPool listId="ITEMS" ITEMS={ITEMS} />
           {lists.map((list, i) => {
             return (
-              <div key={list}>
+              <div key={list} className="container">
                 <LetterList listId={list} letters={this.state[list]} />
                 <SayAgain listId={list} sayAgain={this.getWord} />
               </div>

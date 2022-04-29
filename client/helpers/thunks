@@ -2,7 +2,10 @@ import axios from "axios";
 
 export const getAudioThunk = (word) => async (dispatch) => {
   const response = await axios.post("/api/audio", { word });
-
+  const audio = response.data.audioContent.data;
+  if (audio.length === 0) {
+    return;
+  }
   const context = new window.AudioContext;
 
   function playByteArray(bytes) {
@@ -18,7 +21,7 @@ export const getAudioThunk = (word) => async (dispatch) => {
     source.start(0);
   }
 
-  playByteArray(response.data.audioContent.data);
+  playByteArray(audio);
 
   return response.data;
 };

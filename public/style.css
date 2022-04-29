@@ -55,12 +55,12 @@ body, #app {
   z-index: 6;
 }
 
-/* .word {
-  z-index: 4;
-} */
-
 .dragging {
   opacity: 80%;
+}
+
+.container {
+  display: flex;
 }
 
 #garbage {

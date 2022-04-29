@@ -6,17 +6,9 @@ const textToSpeech = require("@google-cloud/text-to-speech");
 // const fs = require("fs");
 // const util = require("util");
 
-// const letterSounds = {
-//   A: "ɑ:",
-//   B: "by",
-//   J: "dʒ",
-// };
-
 router.post("/", async (req, res, next) => {
   try {
     const text = req.body.word;
-    // const sound = letterSounds[text];
-    // console.log(text, sound);
 
     // create a new client
     const client = new textToSpeech.TextToSpeechClient();

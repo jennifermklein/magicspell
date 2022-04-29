@@ -1,4 +1,5 @@
 import axios from "axios";
+import {AudioContext, decodeAudioData} from 'standardized-audio-context';
 
 export const getAudioThunk = (word) => async (dispatch) => {
   const response = await axios.post("/api/audio", { word });
@@ -6,19 +7,22 @@ export const getAudioThunk = (word) => async (dispatch) => {
   if (audio.length === 0) {
     return;
   }
-  const context = new window.AudioContext || window.webkitAudioContext;
 
-  function playByteArray(bytes) {
+  const context = new window.AudioContext || new AudioContext() || new webkitAudioContext();
+
+  async function playByteArray(bytes) {
     var buffer = new Uint8Array(bytes.length);
     buffer.set(new Uint8Array(bytes), 0);
-    context.decodeAudioData(buffer.buffer, play);
+    // context.decodeAudioData(buffer.buffer, play);
+    const audioBuffer = await decodeAudioData(context,buffer.buffer);
+    play(audioBuffer);
   }
 
   function play(audioBuffer) {
-    var source = context.createBufferSource();
+    let source = context.createBufferSource();
     source.buffer = audioBuffer;
     source.connect(context.destination);
-    source.start(0);
+    source.start();
   }
 
   playByteArray(audio);

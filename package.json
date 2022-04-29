@@ -37,6 +37,7 @@
     "react-beautiful-dnd": "^13.1.0",
     "react-rainbow-components": "^1.29.0",
     "sequelize": "^6.3.5",
+    "standardized-audio-context": "^25.3.24",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

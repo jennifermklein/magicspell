@@ -121,7 +121,7 @@ class Main extends Component {
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <div className="list-container">
-          {/* <img src={logo} alt="logo" /> */}
+          <img src="/magicspell-V1.png" alt="rainbow logo" />
           <LetterPool listId="ITEMS" ITEMS={ITEMS} />
           {lists.map((list, i) => {
             return (

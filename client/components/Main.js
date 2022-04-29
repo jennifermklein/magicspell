@@ -95,7 +95,7 @@ class Main extends Component {
           source,
           destination
         );
-        console.log("RESULT", result);
+
         this.setState(
           {
             lists: {
@@ -126,12 +126,9 @@ class Main extends Component {
 
   removeList = (e, list) => {
     console.log(list);
-    console.log("STATE:", this.state);
     let newState = { ...this.state };
-    console.log(newState);
-    delete newState[list];
+    delete newState.lists[list];
     console.log("NEW STATE:", newState);
-    // const { list } = this.state;
 
     this.setState(newState, () => console.log(this.state));
   };
@@ -139,7 +136,6 @@ class Main extends Component {
   render() {
     // const lists = Object.keys(this.state);
     const lists = Object.keys(this.state.lists);
-    console.log(lists);
 
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>

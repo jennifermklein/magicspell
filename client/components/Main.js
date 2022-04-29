@@ -2,17 +2,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { v4 as uuid } from "uuid";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+// components
 import { LetterList } from "./LetterList";
 import { LetterPool } from "./LetterPool";
 import { AddList } from "./AddList";
-// import { Welcome } from "./Welcome";
 import { SayAgain } from "./SayAgain";
 import { RemoveList } from "./RemoveList";
+// helpers and data
 import { reorder, copy, move, remove } from "../helpers/ordering";
-import { ITEMS } from "../helpers/data";
 import { getAudioThunk } from "../helpers/thunks";
-// import logo from "../../public/icons/magicspell-V1.png";
-// import logo from "./magicspell-V1.png";
+import { ITEMS } from "../helpers/data";
 
 class Main extends Component {
   state = {
@@ -121,7 +120,7 @@ class Main extends Component {
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <div className="list-container">
-          <img src="/magicspell-V1.png" alt="rainbow logo" />
+          <img id="logo" src="/magicspell-V1.png" alt="rainbow logo" />
           <LetterPool listId="ITEMS" ITEMS={ITEMS} />
           {lists.map((list, i) => {
             return (

@@ -28,7 +28,6 @@ body, #app {
   align-items: center;
   border-radius: 5px;
   padding: .5rem;
-  margin: 0 0 1rem 0;
   gap: 2px;
   user-select: none;
   box-shadow: 0 0 2px #ccc;
@@ -61,6 +60,34 @@ body, #app {
 
 .container {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0 0 0;
+  gap: 1%;
+  width: 100%;
+}
+
+#add-list {
+  margin-top: 1rem; 
+}
+
+#play-again ,#add-list {
+  height: 35px;
+  width: 35px;
+  border-radius: 18px;
+  color: white;
+  border:none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#play-again {
+  background-color: rgb(255, 0, 255);
+}
+
+#add-list {
+  background-color: rgb(0, 255, 191);
 }
 
 #garbage {

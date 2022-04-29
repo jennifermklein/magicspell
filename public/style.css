@@ -25,19 +25,19 @@ body, #app {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
-  min-height: 2rem;
-  min-width: 2rem;
+  font-size: 2.5rem;
+  min-height: 3.5rem;
+  min-width: 2.5rem;
   border: 1px lightgray solid;
   align-items: center;
   border-radius: 5px;
-  padding: .5rem;
+  padding: 0 .5rem;
   gap: 2px;
   user-select: none;
   box-shadow: 0 0 2px #ccc;
   font-family: 'Radio Canada', sans-serif;
   font-weight: 600;
-  color:rgb(56, 50, 62);
+  color:rgb(59, 27, 92);
 }
 
 .letter-list:hover {
@@ -49,12 +49,12 @@ body, #app {
  display: none !important;  
 } */ 
 
-.item, .word {
+.item {
   display: flex;
   user-select: none;
   justify-content: center;
   align-items: center;
-  padding: 0.5rem;
+  padding: .5rem;
   z-index: 6;
 }
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { Droppable, Draggable, DroppableProvided } from "react-beautiful-dnd";
+import { getStyle } from "../helpers/style";
 
 export const LetterPool = ({ listId, ITEMS }) => {
   return (
@@ -15,6 +16,7 @@ export const LetterPool = ({ listId, ITEMS }) => {
           {...provided.dragHandleProps}
           ref={provided.innerRef}
           className="clone"
+          style={getStyle(provided.draggableProps.style, snapshot)}
         >
           {ITEMS[rubric.source.index].content}
         </div>
@@ -32,9 +34,10 @@ export const LetterPool = ({ listId, ITEMS }) => {
               className={`item ${snapshot.isDragging ? "dragging" : ""} ${
                 item.content === " " ? "space" : ""
               }`}
+              key={item.id}
             >
               {item.content}
-              <Draggable key={item.id} draggableId={item.id} index={index}>
+              <Draggable draggableId={item.id} index={index}>
                 {(provided, snapshot) => (
                   <React.Fragment>
                     <div
@@ -60,8 +63,3 @@ export const LetterPool = ({ listId, ITEMS }) => {
     </Droppable>
   );
 };
-
-// {snapshot.isDragging && (
-//   <div className="item">{item.content}</div>
-// )}
-// {provided.placeholder}

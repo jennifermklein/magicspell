@@ -1,5 +1,6 @@
 import React from "react";
 import { Droppable, Draggable, DroppableProvided } from "react-beautiful-dnd";
+import { getStyle } from "../helpers/style";
 
 export const LetterList = ({ listId, letters }) => {
   return (
@@ -16,11 +17,12 @@ export const LetterList = ({ listId, letters }) => {
         >
           {letters.map((letter, index) => (
             <Draggable key={letter.id} draggableId={letter.id} index={index}>
-              {(dragProvided) => (
+              {(dragProvided, snapshot) => (
                 <div
                   {...dragProvided.dragHandleProps}
                   {...dragProvided.draggableProps}
                   ref={dragProvided.innerRef}
+                  style={getStyle(dragProvided.draggableProps.style, snapshot)}
                 >
                   <div className="letter">{letter.content}</div>
                 </div>

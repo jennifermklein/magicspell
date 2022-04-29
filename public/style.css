@@ -37,6 +37,7 @@ body, #app {
   /* text-shadow: 0 0 2px black; */
   padding: 0 .75rem;
   background-color: #6eeb831e;
+  touch-action: none;
 }
 
 .letter-list:hover {
@@ -60,6 +61,7 @@ body, #app {
   font-family: 'Aleo', serif;
   color:rgb(59, 27, 92);
   opacity: 60%;
+  touch-action: none;
 } 
 
 .item, .letter {
@@ -70,11 +72,13 @@ body, #app {
   min-width: 1rem;
   margin-top: .25rem;
   position: relative;
+  touch-action: none;
 }
 
 .draggable {
   position: absolute;
   opacity: 0%;
+  touch-action: none;
 }
 
 .item {
@@ -88,6 +92,7 @@ body, #app {
   border-radius: 3px;
   margin: 0 10px 0 10px;
   /* margin-left: 1rem; */
+  touch-action: none;
 }
 
 .container {
@@ -136,3 +141,8 @@ button:hover {
   margin: 2% 0 4% 0;
 }
 
+@media only screen and (max-width: 600px) {
+  .list-container { 
+    width: 90%;
+  }
+}

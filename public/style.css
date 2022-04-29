@@ -14,7 +14,6 @@ body, #app {
   align-items: center;
   justify-content: center;
   margin: 8% auto 0 auto;
-  z-index: 4;
 }
 
 .letter-list {
@@ -36,17 +35,16 @@ body, #app {
   font-family: 'Radio Canada', sans-serif;
   font-weight: 600;
   color:rgb(56, 50, 62);
-  z-index: 5;
 }
 
 .letter-list:hover {
   box-shadow: 0 0 5px #ccc;
 }
 
-/* .clone+div {
+.clone+div {
   color: red;
- display: none !important; 
-} */
+ /* display: none !important;  */
+}
 
 .item, .word {
   display: flex;
@@ -63,7 +61,6 @@ body, #app {
 
 .dragging {
   opacity: 80%;
-  z-index: 4;
 }
 
 #garbage {

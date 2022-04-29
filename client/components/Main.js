@@ -7,7 +7,7 @@ import { LetterPool } from "./LetterPool";
 import { AddList } from "./AddList";
 // import { Garbage } from "./Garbage";
 // import { Welcome } from "./Welcome";
-// import { SayAgain } from "./SayAgain";
+import { SayAgain } from "./SayAgain";
 // import { RemoveList } from "./RemoveList";
 import { reorder, copy, move, remove } from "../helpers/ordering";
 import { ITEMS } from "../helpers/data";
@@ -60,7 +60,7 @@ class Main extends Component {
               destination.index
             ),
           },
-          () => this.getWord(destination)
+          () => this.getWord(destination.droppableId)
         );
         break;
       case "ITEMS":
@@ -73,7 +73,7 @@ class Main extends Component {
               destination
             ),
           },
-          () => this.getWord(destination)
+          () => this.getWord(destination.droppableId)
         );
         break;
       default:
@@ -84,14 +84,15 @@ class Main extends Component {
             source,
             destination
           ),
-          () => this.getWord(destination)
+          () => this.getWord(destination.droppableId)
         );
         break;
     }
   };
 
-  getWord = (destination) => {
-    const word = this.state[destination.droppableId].reduce(
+  getWord = (evt, destination) => {
+    const destinationId = destination || evt;
+    const word = this.state[destinationId].reduce(
       (accum, item) => accum + item.content,
       ""
     );
@@ -112,13 +113,18 @@ class Main extends Component {
   //   };
 
   render() {
+    const lists = Object.keys(this.state);
+
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <div className="list-container">
           <LetterPool listId="ITEMS" ITEMS={ITEMS} />
-          {Object.keys(this.state).map((list, i) => {
+          {lists.map((list, i) => {
             return (
-              <LetterList key={list} listId={list} letters={this.state[list]} />
+              <div key={list}>
+                <LetterList listId={list} letters={this.state[list]} />
+                <SayAgain listId={list} sayAgain={this.getWord} />
+              </div>
             );
           })}
           <AddList addList={this.addList} />

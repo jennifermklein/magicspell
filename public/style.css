@@ -75,7 +75,7 @@ body, #app {
   margin-top: 1rem; 
 }
 
-#play-again ,#add-list {
+#play-again ,#add-list, #remove-list {
   height: 35px;
   width: 35px;
   border-radius: 18px;
@@ -97,6 +97,10 @@ body, #app {
 
 #add-list {
   background-color: rgb(25, 219, 170);
+}
+
+#remove-list {
+  background-color: rgb(235, 66, 15);
 }
 
 #garbage {

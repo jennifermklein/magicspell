@@ -1,6 +1,4 @@
 import React from "react";
-import { Button } from "react-rainbow-components";
-import { ButtonIcon } from "react-rainbow-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagicWandSparkles } from "@fortawesome/free-solid-svg-icons";
 

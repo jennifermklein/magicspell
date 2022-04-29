@@ -5,7 +5,6 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { LetterList } from "./LetterList";
 import { LetterPool } from "./LetterPool";
 import { AddList } from "./AddList";
-// import { Garbage } from "./Garbage";
 // import { Welcome } from "./Welcome";
 import { SayAgain } from "./SayAgain";
 import { RemoveList } from "./RemoveList";
@@ -41,19 +40,6 @@ class Main extends Component {
       }
       return;
     }
-
-    // if (destination.droppableId === "GARBAGE") {
-    //   this.setState({lists:
-    //     {...this.state.lists,
-    //       [source.droppableId]: remove(
-    //         this.state.lists[source.droppableId],
-    //         source.index
-    //       ),
-    //     }},
-    //     () => this.getWord(source)
-    //   );
-    //   return;
-    // }
 
     switch (source.droppableId) {
       case destination.droppableId:
@@ -124,12 +110,9 @@ class Main extends Component {
   };
 
   removeList = (e, list) => {
-    console.log(list);
     let newState = { ...this.state };
     delete newState.lists[list];
-    console.log("NEW STATE:", newState);
-
-    this.setState(newState, () => console.log(this.state));
+    this.setState(newState);
   };
 
   render() {

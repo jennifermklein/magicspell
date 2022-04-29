@@ -35,9 +35,7 @@ router.post("/", async (req, res, next) => {
     // Write the binary audio content to a local file
     // const writeFile = util.promisify(fs.writeFile);
     // await writeFile("output.mp3", response.audioContent, "binary");
-    // console.log("Audio content written to file: output.mp3");
 
-    // sent the data back
     res.send(response);
   } catch (err) {
     next(err);

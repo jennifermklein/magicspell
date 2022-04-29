@@ -2,6 +2,7 @@ import React from "react";
 import { Droppable, Draggable, DroppableProvided } from "react-beautiful-dnd";
 
 export const LetterList = ({ listId, letters }) => {
+  console.log(letters);
   return (
     <Droppable
       droppableId={listId}

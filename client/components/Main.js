@@ -8,14 +8,17 @@ import { AddList } from "./AddList";
 // import { Garbage } from "./Garbage";
 // import { Welcome } from "./Welcome";
 import { SayAgain } from "./SayAgain";
-// import { RemoveList } from "./RemoveList";
+import { RemoveList } from "./RemoveList";
 import { reorder, copy, move, remove } from "../helpers/ordering";
 import { ITEMS } from "../helpers/data";
 import { getAudioThunk } from "../helpers/thunks";
 
 class Main extends Component {
+  // state = {
+  //   [uuid()]: [],
+  // };
   state = {
-    [uuid()]: [],
+    lists: { [uuid()]: [] },
   };
 
   onDragEnd = (result) => {
@@ -26,10 +29,13 @@ class Main extends Component {
       if (source.droppableId !== "ITEMS") {
         this.setState(
           {
-            [source.droppableId]: remove(
-              this.state[source.droppableId],
-              source.index
-            ),
+            lists: {
+              ...this.state.lists,
+              [source.droppableId]: remove(
+                this.state.lists[source.droppableId],
+                source.index
+              ),
+            },
           },
           () => this.getWord(source.droppableId)
         );
@@ -38,13 +44,13 @@ class Main extends Component {
     }
 
     // if (destination.droppableId === "GARBAGE") {
-    //   this.setState(
-    //     {
+    //   this.setState({lists:
+    //     {...this.state.lists,
     //       [source.droppableId]: remove(
-    //         this.state[source.droppableId],
+    //         this.state.lists[source.droppableId],
     //         source.index
     //       ),
-    //     },
+    //     }},
     //     () => this.getWord(source)
     //   );
     //   return;
@@ -54,11 +60,14 @@ class Main extends Component {
       case destination.droppableId:
         this.setState(
           {
-            [destination.droppableId]: reorder(
-              this.state[source.droppableId],
-              source.index,
-              destination.index
-            ),
+            lists: {
+              ...this.state.lists,
+              [destination.droppableId]: reorder(
+                this.state.lists[source.droppableId],
+                source.index,
+                destination.index
+              ),
+            },
           },
           () => this.getWord(destination.droppableId)
         );
@@ -66,24 +75,35 @@ class Main extends Component {
       case "ITEMS":
         this.setState(
           {
-            [destination.droppableId]: copy(
-              ITEMS,
-              this.state[destination.droppableId],
-              source,
-              destination
-            ),
+            lists: {
+              ...this.state.lists,
+              [destination.droppableId]: copy(
+                ITEMS,
+                this.state.lists[destination.droppableId],
+                source,
+                destination
+              ),
+            },
           },
           () => this.getWord(destination.droppableId)
         );
         break;
       default:
+        const result = move(
+          this.state.lists[source.droppableId],
+          this.state.lists[destination.droppableId],
+          source,
+          destination
+        );
+        console.log("RESULT", result);
         this.setState(
-          move(
-            this.state[source.droppableId],
-            this.state[destination.droppableId],
-            source,
-            destination
-          ),
+          {
+            lists: {
+              ...this.state.lists,
+              [source.droppableId]: result[source.droppableId],
+              [destination.droppableId]: result[destination.droppableId],
+            },
+          },
           () => this.getWord(destination.droppableId)
         );
         break;
@@ -92,7 +112,7 @@ class Main extends Component {
 
   getWord = (evt, destination) => {
     const destinationId = destination || evt;
-    const word = this.state[destinationId].reduce(
+    const word = this.state.lists[destinationId].reduce(
       (accum, item) => accum + item.content,
       ""
     );
@@ -101,19 +121,25 @@ class Main extends Component {
   };
 
   addList = (e) => {
-    this.setState({ [uuid()]: [] });
+    this.setState({ lists: { ...this.state.lists, [uuid()]: [] } });
   };
 
-  //   removeList = (e, list) => {
-  //     console.log("STATE:", this.state);
-  //     let state = { ...this.state };
-  //     delete state[list];
-  //     console.log("NEW STATE:", state);
-  //     this.setState(state, () => console.log(this.state));
-  //   };
+  removeList = (e, list) => {
+    console.log(list);
+    console.log("STATE:", this.state);
+    let newState = { ...this.state };
+    console.log(newState);
+    delete newState[list];
+    console.log("NEW STATE:", newState);
+    // const { list } = this.state;
+
+    this.setState(newState, () => console.log(this.state));
+  };
 
   render() {
-    const lists = Object.keys(this.state);
+    // const lists = Object.keys(this.state);
+    const lists = Object.keys(this.state.lists);
+    console.log(lists);
 
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
@@ -122,8 +148,9 @@ class Main extends Component {
           {lists.map((list, i) => {
             return (
               <div key={list} className="container">
-                <LetterList listId={list} letters={this.state[list]} />
+                <LetterList listId={list} letters={this.state.lists[list]} />
                 <SayAgain listId={list} sayAgain={this.getWord} />
+                <RemoveList listId={list} removeList={this.removeList} />
               </div>
             );
           })}

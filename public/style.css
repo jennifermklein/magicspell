@@ -1,50 +1,56 @@
 html {
-  font-size: 34pt;
+  font-size: 14pt;
 }
 
 body {
   font-family: sans-serif;
 }
 
-a {
-  text-decoration: none;
-}
-
-label {
-  display: block;
-}
-
-nav a {
-  display: inline-block;
-  margin: 1em;
-}
-
-form div {
-  margin: 1em;
-  display: inline-block;
-}
-
 .list-container {
   display: flex;
-  width: 100%;
-  padding: 0;
+  flex-direction: column;
+  width: 60%;
+  align-items: center;
+  justify-content: center;
+  margin: 8% auto 0 auto;
 }
 
 .letter-list {
-  border: 1px black solid;
-  display: inline-flex;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  height: 1rem;
-  padding: .25rem;
-  margin: .25rem auto;
-  gap: 5px;
+  font-size: 2rem;
+  min-height: 2rem;
+  min-width: 2rem;
+  border: 1px lightgray solid;
+  align-items: center;
+  border-radius: 5px;
+  padding: .5rem;
+  margin: 0 0 1rem 0;
+  gap: 2px;
+  user-select: none;
+  box-shadow: 0 0 2px #ccc;
+}
+
+.letter-list:hover {
+  box-shadow: 0 0 5px #ccc;
+}
+
+.clone+div {
+  color: red;
+ /* display: none !important; */
+}
+
+.item {
+  display: flex;
+  user-select: none;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
 }
 
 .dragging {
-  opacity: 100%;
+  opacity: 80%;
 }
 
-.clone {
-  opacity: 50%;
-}

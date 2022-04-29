@@ -11,36 +11,32 @@ export const LetterPool = ({ listId, ITEMS }) => {
       ITEMS={ITEMS}
     >
       {(provided, snapshot) => (
-        <div className="list-container">
-          <div
-            ref={provided.innerRef}
-            className="letter-list"
-            // isDraggingOver={snapshot.isDraggingOver}
-          >
-            {ITEMS.map((item, index) => (
-              <Draggable key={item.id} draggableId={item.id} index={index}>
-                {(provided, snapshot) => (
-                  <React.Fragment>
-                    <div
-                      className={`item ${
-                        snapshot.isDragging ? "dragging" : ""
-                      }`}
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      // isDragging={snapshot.isDragging}
-                      style={provided.draggableProps.style}
-                    >
-                      {item.content}
-                    </div>
-                    {snapshot.isDragging && (
-                      <div className="item clone">{item.content}</div>
-                    )}
-                  </React.Fragment>
-                )}
-              </Draggable>
-            ))}
-          </div>
+        <div
+          ref={provided.innerRef}
+          className="letter-list"
+          // isDraggingOver={snapshot.isDraggingOver}
+        >
+          {ITEMS.map((item, index) => (
+            <Draggable key={item.id} draggableId={item.id} index={index}>
+              {(provided, snapshot) => (
+                <React.Fragment>
+                  <div
+                    className={`item ${snapshot.isDragging ? "dragging" : ""}`}
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                    // isDragging={snapshot.isDragging}
+                    style={provided.draggableProps.style}
+                  >
+                    {item.content}
+                  </div>
+                  {snapshot.isDragging && (
+                    <div className="item clone">{item.content}</div>
+                  )}
+                </React.Fragment>
+              )}
+            </Draggable>
+          ))}
           {provided.placeholder}
         </div>
       )}

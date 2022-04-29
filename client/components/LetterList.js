@@ -10,29 +10,21 @@ export const LetterList = ({ listId, letters }) => {
     >
       {(dropProvided) => (
         <div {...dropProvided.droppableProps}>
-          <div>
-            <div className="list-container">
-              <div className="letter-list" ref={dropProvided.innerRef}>
-                {letters.map((letter, index) => (
-                  <Draggable
-                    key={letter.id}
-                    draggableId={letter.id}
-                    index={index}
+          <div className="letter-list" ref={dropProvided.innerRef}>
+            {letters.map((letter, index) => (
+              <Draggable key={letter.id} draggableId={letter.id} index={index}>
+                {(dragProvided) => (
+                  <div
+                    {...dragProvided.dragHandleProps}
+                    {...dragProvided.draggableProps}
+                    ref={dragProvided.innerRef}
                   >
-                    {(dragProvided) => (
-                      <div
-                        {...dragProvided.dragHandleProps}
-                        {...dragProvided.draggableProps}
-                        ref={dragProvided.innerRef}
-                      >
-                        <div>{letter.content}</div>
-                      </div>
-                    )}
-                  </Draggable>
-                ))}
-                {dropProvided.placeholder}
-              </div>
-            </div>
+                    <div>{letter.content}</div>
+                  </div>
+                )}
+              </Draggable>
+            ))}
+            {dropProvided.placeholder}
           </div>
         </div>
       )}

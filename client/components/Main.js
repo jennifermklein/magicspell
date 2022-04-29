@@ -1,14 +1,16 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { v4 as uuid } from "uuid";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { LetterList } from "./LetterList";
 import { LetterPool } from "./LetterPool";
 import { AddList } from "./AddList";
+import { Welcome } from "./Welcome";
+// import { SayAgain } from "./SayAgain";
+// import { RemoveList } from "./RemoveList";
 import { reorder, copy, move, remove } from "../helpers/ordering";
 import { ITEMS } from "../helpers/data";
 import { getAudioThunk } from "../helpers/thunks";
-import axios from "axios";
-import { connect } from "react-redux";
 
 class Main extends Component {
   state = {
@@ -20,15 +22,17 @@ class Main extends Component {
 
     // dropped outside the list
     if (!destination) {
-      this.setState(
-        {
-          [source.droppableId]: remove(
-            this.state[source.droppableId],
-            source.index
-          ),
-        },
-        () => this.getWord(source)
-      );
+      if (source.droppableId !== "ITEMS") {
+        this.setState(
+          {
+            [source.droppableId]: remove(
+              this.state[source.droppableId],
+              source.index
+            ),
+          },
+          () => this.getWord(source)
+        );
+      }
       return;
     }
 
@@ -85,17 +89,34 @@ class Main extends Component {
     this.setState({ [uuid()]: [] });
   };
 
+  //   removeList = (e, list) => {
+  //     console.log("STATE:", this.state);
+  //     let state = { ...this.state };
+  //     delete state[list];
+  //     console.log("NEW STATE:", state);
+  //     this.setState(state, () => console.log(this.state));
+  //   };
+
   render() {
     return (
-      <DragDropContext onDragEnd={this.onDragEnd}>
-        <LetterPool listId="ITEMS" ITEMS={ITEMS} />
-        <AddList addList={this.addList} />
-        {Object.keys(this.state).map((list, i) => {
-          return (
-            <LetterList key={list} listId={list} letters={this.state[list]} />
-          );
-        })}
-      </DragDropContext>
+      <React.Fragment>
+        {/* <Welcome /> */}
+        <div className="list-container">
+          <DragDropContext onDragEnd={this.onDragEnd}>
+            <LetterPool listId="ITEMS" ITEMS={ITEMS} />
+            {Object.keys(this.state).map((list, i) => {
+              return (
+                <LetterList
+                  key={list}
+                  listId={list}
+                  letters={this.state[list]}
+                />
+              );
+            })}
+            <AddList addList={this.addList} />
+          </DragDropContext>
+        </div>
+      </React.Fragment>
     );
   }
 }

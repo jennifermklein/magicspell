@@ -6,7 +6,7 @@ export const getAudioThunk = (word) => async (dispatch) => {
   if (audio.length === 0) {
     return;
   }
-  const context = new window.AudioContext;
+  const context = new window.AudioContext || window.webkitAudioContext;
 
   function playByteArray(bytes) {
     var buffer = new Uint8Array(bytes.length);

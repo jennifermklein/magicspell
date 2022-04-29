@@ -16,10 +16,6 @@ body, #app {
   margin: 8% auto 0 auto;
 }
 
-.list-container:hover {
-  cursor: url('https://media.istockphoto.com/vectors/magic-wand-line-icon-vector-id1164851035?s=612x612'), auto;
-}
-
 .letter-list {
   display: flex;
   flex-wrap: wrap;
@@ -42,6 +38,10 @@ body, #app {
 
 .letter-list:hover {
   box-shadow: 0 0 5px #ccc;
+}
+
+#pool {
+  margin-bottom: 30px;
 }
 
 /* .clone+div {
@@ -82,11 +82,7 @@ body, #app {
   width: 100%;
 }
 
-#add-list {
-  margin-top: 1rem; 
-}
-
-#play-again ,#add-list, #remove-list {
+button {
   height: 35px;
   width: 35px;
   border-radius: 18px;
@@ -98,12 +94,16 @@ body, #app {
   transition: all .1s ease-in-out; 
 }
 
-#play-again:hover, #add-list:hover {
+button:hover {
   transform: scale(1.1);
 }
 
 #play-again {
   background-color: rgb(234, 11, 234);
+}
+
+#add-list {
+  margin-top: 1rem; 
 }
 
 #add-list {

@@ -14,6 +14,7 @@ export const LetterPool = ({ listId, ITEMS }) => {
         <div
           ref={provided.innerRef}
           className="letter-list"
+          id="pool"
           // isDraggingOver={snapshot.isDraggingOver}
         >
           {ITEMS.map((item, index) => (

@@ -14,9 +14,6 @@ import { ITEMS } from "../helpers/data";
 import { getAudioThunk } from "../helpers/thunks";
 
 class Main extends Component {
-  // state = {
-  //   [uuid()]: [],
-  // };
   state = {
     lists: { [uuid()]: [] },
   };

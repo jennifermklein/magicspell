@@ -55,6 +55,8 @@ body, #app {
   min-width: 2.5rem;
   user-select: none;
   font-family: 'Aleo', serif;
+  color:rgb(59, 27, 92);
+  opacity: 60%;
 } 
 
 .item, .letter {
@@ -72,23 +74,17 @@ body, #app {
   opacity: 0%;
 }
 
-.draggable .dragging {
-  opacity: 100%;
-}
-
 .item {
   padding: 0 .5rem;
 }
 
 .space {
   border: 1px dashed #ccc;
+  width: 2rem;
   height: 2rem;
   border-radius: 3px;
-  margin-left: 1rem;
-}
-
-.dragging {
-  opacity: 80%;
+  margin: 0 10px 0 10px;
+  /* margin-left: 1rem; */
 }
 
 .container {

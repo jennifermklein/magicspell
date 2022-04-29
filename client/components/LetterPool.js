@@ -38,7 +38,9 @@ export const LetterPool = ({ listId, ITEMS }) => {
                 {(provided, snapshot) => (
                   <React.Fragment>
                     <div
-                      className="draggable"
+                      className={`draggable ${
+                        item.content === " " ? "space" : ""
+                      }`}
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
@@ -47,10 +49,6 @@ export const LetterPool = ({ listId, ITEMS }) => {
                     >
                       {item.content}
                     </div>
-                    {snapshot.isDragging && (
-                      <div className="item">{item.content}</div>
-                    )}
-                    {provided.placeholder}
                   </React.Fragment>
                 )}
               </Draggable>
@@ -62,3 +60,8 @@ export const LetterPool = ({ listId, ITEMS }) => {
     </Droppable>
   );
 };
+
+// {snapshot.isDragging && (
+//   <div className="item">{item.content}</div>
+// )}
+// {provided.placeholder}

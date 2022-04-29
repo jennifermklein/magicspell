@@ -5,7 +5,8 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { LetterList } from "./LetterList";
 import { LetterPool } from "./LetterPool";
 import { AddList } from "./AddList";
-import { Welcome } from "./Welcome";
+// import { Garbage } from "./Garbage";
+// import { Welcome } from "./Welcome";
 // import { SayAgain } from "./SayAgain";
 // import { RemoveList } from "./RemoveList";
 import { reorder, copy, move, remove } from "../helpers/ordering";
@@ -35,6 +36,19 @@ class Main extends Component {
       }
       return;
     }
+
+    // if (destination.droppableId === "GARBAGE") {
+    //   this.setState(
+    //     {
+    //       [source.droppableId]: remove(
+    //         this.state[source.droppableId],
+    //         source.index
+    //       ),
+    //     },
+    //     () => this.getWord(source)
+    //   );
+    //   return;
+    // }
 
     switch (source.droppableId) {
       case destination.droppableId:
@@ -99,24 +113,17 @@ class Main extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        {/* <Welcome /> */}
+      <DragDropContext onDragEnd={this.onDragEnd}>
         <div className="list-container">
-          <DragDropContext onDragEnd={this.onDragEnd}>
-            <LetterPool listId="ITEMS" ITEMS={ITEMS} />
-            {Object.keys(this.state).map((list, i) => {
-              return (
-                <LetterList
-                  key={list}
-                  listId={list}
-                  letters={this.state[list]}
-                />
-              );
-            })}
-            <AddList addList={this.addList} />
-          </DragDropContext>
+          <LetterPool listId="ITEMS" ITEMS={ITEMS} />
+          {Object.keys(this.state).map((list, i) => {
+            return (
+              <LetterList key={list} listId={list} letters={this.state[list]} />
+            );
+          })}
+          <AddList addList={this.addList} />
         </div>
-      </React.Fragment>
+      </DragDropContext>
     );
   }
 }

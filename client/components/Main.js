@@ -12,6 +12,8 @@ import { RemoveList } from "./RemoveList";
 import { reorder, copy, move, remove } from "../helpers/ordering";
 import { ITEMS } from "../helpers/data";
 import { getAudioThunk } from "../helpers/thunks";
+// import logo from "../../public/icons/magicspell-V1.png";
+// import logo from "./magicspell-V1.png";
 
 class Main extends Component {
   state = {
@@ -131,19 +133,19 @@ class Main extends Component {
   };
 
   render() {
-    // const lists = Object.keys(this.state);
     const lists = Object.keys(this.state.lists);
 
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <div className="list-container">
+          {/* <img src={logo} alt="logo" /> */}
           <LetterPool listId="ITEMS" ITEMS={ITEMS} />
           {lists.map((list, i) => {
             return (
               <div key={list} className="container">
+                <RemoveList listId={list} removeList={this.removeList} />
                 <LetterList listId={list} letters={this.state.lists[list]} />
                 <SayAgain listId={list} sayAgain={this.getWord} />
-                <RemoveList listId={list} removeList={this.removeList} />
               </div>
             );
           })}

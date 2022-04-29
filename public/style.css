@@ -5,6 +5,7 @@ html {
 
 body, #app {
   height: 100%;
+  display: inline;
 }
 
 .list-container {
@@ -27,13 +28,12 @@ body, #app {
   border: 1px lightgray solid;
   align-items: center;
   border-radius: 5px;
-  padding: 0 .5rem;
   gap: 2px;
   user-select: none;
   box-shadow: 0 0 2px #ccc;
-  font-family: 'Radio Canada', sans-serif;
-  font-weight: 600;
+  font-family: 'Aleo', serif;
   color:rgb(59, 27, 92);
+  padding: 0 .75rem;
 }
 
 .letter-list:hover {
@@ -42,29 +42,47 @@ body, #app {
 
 #pool {
   margin-bottom: 30px;
+  padding: .75rem;
+  justify-content: flex-start;
 }
 
-/* .clone+div {
-  color: red;
- display: none !important;  
-} */ 
+.clone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  min-height: 3.5rem;
+  min-width: 2.5rem;
+  user-select: none;
+  font-family: 'Aleo', serif;
+} 
 
-.item {
+.item, .letter {
   display: flex;
   user-select: none;
   justify-content: center;
   align-items: center;
-  padding: .5rem;
   min-width: 1rem;
+  margin-top: .25rem;
+  position: relative;
 }
 
-.letter {
-  min-width: 1rem;
+.draggable {
+  position: absolute;
+  opacity: 0%;
+}
+
+.draggable .dragging {
+  opacity: 100%;
+}
+
+.item {
+  padding: 0 .5rem;
 }
 
 .space {
   border: 1px dashed #ccc;
-  height: 1rem;
+  height: 2rem;
   border-radius: 3px;
   margin-left: 1rem;
 }
@@ -99,7 +117,7 @@ button:hover {
 }
 
 #play-again {
-  background-color: rgb(234, 11, 234);
+  background-color: #26d1e4;
 }
 
 #add-list {
@@ -107,11 +125,11 @@ button:hover {
 }
 
 #add-list {
-  background-color: rgb(25, 219, 170);
+  background-color: #6EEB83;
 }
 
 #remove-list {
-  background-color: rgb(235, 33, 15);
+  background-color: #FF5714;
 }
 
 #garbage {

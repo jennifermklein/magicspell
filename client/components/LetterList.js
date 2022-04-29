@@ -15,19 +15,14 @@ export const LetterList = ({ listId, letters }) => {
           ref={dropProvided.innerRef}
         >
           {letters.map((letter, index) => (
-            <Draggable
-              key={letter.id}
-              draggableId={letter.id}
-              index={index}
-              className="word"
-            >
+            <Draggable key={letter.id} draggableId={letter.id} index={index}>
               {(dragProvided) => (
                 <div
                   {...dragProvided.dragHandleProps}
                   {...dragProvided.draggableProps}
                   ref={dragProvided.innerRef}
                 >
-                  <div>{letter.content}</div>
+                  <div className="letter">{letter.content}</div>
                 </div>
               )}
             </Draggable>

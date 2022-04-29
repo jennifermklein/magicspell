@@ -21,7 +21,9 @@ export const LetterPool = ({ listId, ITEMS }) => {
               {(provided, snapshot) => (
                 <React.Fragment>
                   <div
-                    className={`item ${snapshot.isDragging ? "dragging" : ""}`}
+                    className={`item ${snapshot.isDragging ? "dragging" : ""} ${
+                      item.content === " " ? "space" : ""
+                    }`}
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}

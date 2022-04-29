@@ -55,7 +55,18 @@ body, #app {
   justify-content: center;
   align-items: center;
   padding: .5rem;
-  z-index: 6;
+  min-width: 1rem;
+}
+
+.letter {
+  min-width: 1rem;
+}
+
+.space {
+  border: 1px dashed #ccc;
+  height: 1rem;
+  border-radius: 3px;
+  margin-left: 1rem;
 }
 
 .dragging {
@@ -100,7 +111,7 @@ body, #app {
 }
 
 #remove-list {
-  background-color: rgb(235, 66, 15);
+  background-color: rgb(235, 33, 15);
 }
 
 #garbage {

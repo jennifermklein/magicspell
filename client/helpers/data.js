@@ -105,4 +105,8 @@ export const ITEMS = [
     id: uuid(),
     content: "Z",
   },
+  {
+    id: uuid(),
+    content: " ",
+  },
 ];

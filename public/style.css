@@ -79,6 +79,9 @@ body, #app {
   position: absolute;
   opacity: 0%;
   touch-action: none;
+  user-select: none;
+  width: 2rem;
+  height: 2rem;
 }
 
 .item {
@@ -93,6 +96,7 @@ body, #app {
   margin: 0 10px 0 10px;
   /* margin-left: 1rem; */
   touch-action: none;
+  user-select: none;
 }
 
 .container {
@@ -121,7 +125,7 @@ button:hover {
 }
 
 #play-again {
-  background-color: #26d1e4;
+  background-color: #6EEB83;
 }
 
 #add-list {
@@ -129,7 +133,7 @@ button:hover {
 }
 
 #add-list {
-  background-color: #6EEB83;
+  background-color: #26d1e4;
 }
 
 #remove-list {

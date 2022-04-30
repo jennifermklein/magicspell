@@ -50,7 +50,7 @@ export const LetterPool = ({ listId, ITEMS }) => {
                       // isDragging={snapshot.isDragging}
                       style={provided.draggableProps.style}
                     >
-                      {item.content}
+                      {/* {item.content} */}
                     </div>
                   </React.Fragment>
                 )}

@@ -11,8 +11,8 @@ export const getAudioThunk = (word) => async (dispatch) => {
   const context = new AudioContext() || new webkitAudioContext();
 
   async function playByteArray(bytes) {
-    var buffer = new Uint8Array(bytes.length);
-    buffer.set(new Uint8Array(bytes), 0);
+    let buffer = new Uint8Array(bytes.length);
+    buffer.set(new Uint8Array(bytes));
     // context.decodeAudioData(buffer.buffer, play);
     const audioBuffer = await decodeAudioData(context,buffer.buffer);
     play(audioBuffer);

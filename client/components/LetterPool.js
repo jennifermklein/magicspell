@@ -10,17 +10,17 @@ export const LetterPool = ({ listId, ITEMS }) => {
       isCombineEnabled={false}
       isDropDisabled={true}
       ITEMS={ITEMS}
-      renderClone={(provided, snapshot, rubric) => (
-        <div
-          {...provided.draggableProps}
-          {...provided.dragHandleProps}
-          ref={provided.innerRef}
-          className="clone"
-          style={getStyle(provided.draggableProps.style, snapshot)}
-        >
-          {ITEMS[rubric.source.index].content}
-        </div>
-      )}
+      // renderClone={(provided, snapshot, rubric) => (
+      //   <div
+      //     {...provided.draggableProps}
+      //     {...provided.dragHandleProps}
+      //     ref={provided.innerRef}
+      //     className="clone"
+      //     style={getStyle(provided.draggableProps.style, snapshot)}
+      //   >
+      //     {ITEMS[rubric.source.index].content}
+      //   </div>
+      // )}
     >
       {(provided, snapshot) => (
         <div
@@ -41,9 +41,7 @@ export const LetterPool = ({ listId, ITEMS }) => {
                 {(provided, snapshot) => (
                   <React.Fragment>
                     <div
-                      className={`draggable ${
-                        item.content === " " ? "space" : ""
-                      }`}
+                      className={`draggable`}
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
@@ -51,6 +49,11 @@ export const LetterPool = ({ listId, ITEMS }) => {
                       style={provided.draggableProps.style}
                     >
                       {/* {item.content} */}
+                      {snapshot.isDragging && (
+                        <div className="item clone placeholder">
+                          {item.content}
+                        </div>
+                      )}
                     </div>
                   </React.Fragment>
                 )}

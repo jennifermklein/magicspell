@@ -32,7 +32,7 @@ export const LetterPool = ({ listId, ITEMS }) => {
           <div>
             {ITEMS.map((item, index) =>
               index <= ITEMS.length / 2 ? (
-                <Draggable draggableId={item.id} index={index}>
+                <Draggable key={item.id} draggableId={item.id} index={index}>
                   {(provided, snapshot) => (
                     <React.Fragment>
                       <div
@@ -42,7 +42,6 @@ export const LetterPool = ({ listId, ITEMS }) => {
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        // isDragging={snapshot.isDragging}
                         style={provided.draggableProps.style}
                       >
                         {item.content}
@@ -59,15 +58,16 @@ export const LetterPool = ({ listId, ITEMS }) => {
           <div>
             {ITEMS.map((item, index) =>
               index > ITEMS.length / 2 ? (
-                <Draggable draggableId={item.id} index={index}>
+                <Draggable key={item.id} draggableId={item.id} index={index}>
                   {(provided, snapshot) => (
                     <React.Fragment>
                       <div
-                        className="item"
+                        className={`item ${
+                          snapshot.isDragging ? "dragging" : ""
+                        }`}
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        // isDragging={snapshot.isDragging}
                         style={provided.draggableProps.style}
                       >
                         {item.content}

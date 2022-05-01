@@ -7,12 +7,13 @@ html {
 body, #app {
   height: 100%;
   margin-top: 0;
+  touch-action: none;
 }
 
 .list-container {
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 75%;
   align-items: center;
   justify-content: center;
   margin: 0 auto 0 auto;
@@ -39,11 +40,12 @@ body, #app {
 }
 
 #pool {
-  margin: 3% 0;
+  margin: 1% 0 3% 0;
 }
 
 .clone {
   color: #8910df;
+  user-select: none;
 }
 
 .dragging {
@@ -55,12 +57,12 @@ body, #app {
   display: inline;
   user-select: none;
   touch-action: none;
-  font-size: 2rem;
+  font-size: 2.5rem;
   padding: 0 1px;
 }
 
 .item {
-  padding: 0 3px;
+  padding: 0 4px;
 }
 
 .letter {
@@ -156,6 +158,18 @@ button:hover {
     font-size: 1.5rem;
     padding: 1px;
   }
+
+}
+
+@media only screen and (max-width: 850px) and (min-width: 700px) {
+  .list-container { 
+    width: 85%;
+  }
+
+  .item, .letter {
+    font-size: 2.25rem;
+  }
+
 }
 
 @media only screen and (min-width: 1000px) {
@@ -164,7 +178,17 @@ button:hover {
   }
 
   .item, .letter {
-    font-size: 2.5rem;
+    font-size: 3rem;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .list-container { 
+    width: 60%;
+  }
+
+  .item, .letter {
+    font-size: 3rem;
   }
 
   #logo {
@@ -175,6 +199,10 @@ button:hover {
 @media only screen and (min-width: 1400px) {
   .list-container { 
     width: 50%;
+  }
+
+  .item, .letter {
+    font-size: 3.5rem;
   }
 
   #logo {

@@ -17,14 +17,14 @@ export const LetterPool = ({ listId, ITEMS }) => {
           <div>
             {ITEMS.map((item, index) =>
               index <= ITEMS.length / 2 ? (
-                <DraggableLetter item={item} index={index} />
+                <DraggableLetter item={item} index={index} key={item.id} />
               ) : null
             )}
           </div>
           <div>
             {ITEMS.map((item, index) =>
               index > ITEMS.length / 2 ? (
-                <DraggableLetter item={item} index={index} />
+                <DraggableLetter item={item} index={index} key={item.id} />
               ) : null
             )}
           </div>

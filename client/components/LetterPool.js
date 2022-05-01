@@ -29,37 +29,58 @@ export const LetterPool = ({ listId, ITEMS }) => {
           id="pool"
           // isDraggingOver={snapshot.isDraggingOver}
         >
-          {ITEMS.map((item, index) => (
-            <div
-              className={`item ${snapshot.isDragging ? "dragging" : ""} ${
-                item.content === " " ? "space" : ""
-              }`}
-              key={item.id}
-            >
-              {item.content}
-              <Draggable draggableId={item.id} index={index}>
-                {(provided, snapshot) => (
-                  <React.Fragment>
-                    <div
-                      className={`draggable`}
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      // isDragging={snapshot.isDragging}
-                      style={provided.draggableProps.style}
-                    >
-                      {/* {item.content} */}
+          <div>
+            {ITEMS.map((item, index) =>
+              index <= ITEMS.length / 2 ? (
+                <Draggable draggableId={item.id} index={index}>
+                  {(provided, snapshot) => (
+                    <React.Fragment>
+                      <div
+                        className={`item ${
+                          snapshot.isDragging ? "dragging" : ""
+                        }`}
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        // isDragging={snapshot.isDragging}
+                        style={provided.draggableProps.style}
+                      >
+                        {item.content}
+                      </div>
                       {snapshot.isDragging && (
-                        <div className="item clone placeholder">
-                          {item.content}
-                        </div>
+                        <div className="item clone">{item.content}</div>
                       )}
-                    </div>
-                  </React.Fragment>
-                )}
-              </Draggable>
-            </div>
-          ))}
+                    </React.Fragment>
+                  )}
+                </Draggable>
+              ) : null
+            )}
+          </div>
+          <div>
+            {ITEMS.map((item, index) =>
+              index > ITEMS.length / 2 ? (
+                <Draggable draggableId={item.id} index={index}>
+                  {(provided, snapshot) => (
+                    <React.Fragment>
+                      <div
+                        className="item"
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        // isDragging={snapshot.isDragging}
+                        style={provided.draggableProps.style}
+                      >
+                        {item.content}
+                      </div>
+                      {snapshot.isDragging && (
+                        <div className="item clone">{item.content}</div>
+                      )}
+                    </React.Fragment>
+                  )}
+                </Draggable>
+              ) : null
+            )}
+          </div>
           {provided.placeholder}
         </div>
       )}

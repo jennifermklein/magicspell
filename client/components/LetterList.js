@@ -23,8 +23,9 @@ export const LetterList = ({ listId, letters }) => {
                   {...dragProvided.draggableProps}
                   ref={dragProvided.innerRef}
                   style={getStyle(dragProvided.draggableProps.style, snapshot)}
+                  className="letter"
                 >
-                  <div className="letter">{letter.content}</div>
+                  {letter.content}
                 </div>
               )}
             </Draggable>

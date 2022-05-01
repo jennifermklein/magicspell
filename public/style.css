@@ -12,32 +12,26 @@ body, #app {
 .list-container {
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 70%;
   align-items: center;
   justify-content: center;
   margin: 0 auto 0 auto;
+  user-select: none;
+  touch-action: none;
 }
 
 .letter-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  font-size: 2.5rem;
-  min-height: 3.5rem;
-  min-width: 2.5rem;
-  border: 2px white solid;
-  align-items: center;
-  border-radius: 9px;
-  gap: 2px;
-  user-select: none;
-  box-shadow: 0 0 2px gray;
-  font-family: 'Aleo', serif;
   color:#57227e;
-  /* text-shadow: 0 0 2px black; */
-  padding: 0 .75rem;
   background-color: #6eeb831e;
+  border: 2px white solid;
+  border-radius: 9px;
+  box-shadow: 0 0 2px gray;
+  user-select: none;
   touch-action: none;
+  font-family: 'Aleo', serif;
+  padding: .5rem 1rem;
+  min-height: 2rem;
+  min-width: 1rem;
 }
 
 .letter-list:hover {
@@ -46,59 +40,47 @@ body, #app {
 
 #pool {
   margin-bottom: 2%;
-  padding: .75rem;
-  justify-content: flex-start;
 }
 
 .clone {
-  /* display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2.5rem;
-  min-height: 3.5rem;
-  min-width: 2.5rem; */
-  user-select: none;
-  /* font-family: 'Aleo', serif; */
-  color:rgb(59, 27, 92);
-  opacity: 80%;
-  touch-action: none;
-} 
-
-.item, .letter {
-  display: flex;
-  user-select: none;
-  justify-content: center;
-  align-items: center;
-  min-width: 1rem;
-  min-height: 2rem;
-  margin-top: .25rem;
-  position: relative;
-  touch-action: none;
+  color: #8910df;
 }
 
-.draggable {
-  position: absolute;
+.dragging {
+  color: #8910df;
   opacity: 50%;
-  touch-action: none;
+}
+
+.item, .letter {
+  display: inline;
   user-select: none;
-  width: 2rem;
-  height: 2rem;
+  touch-action: none;
+  font-size: 2rem;
+  padding: 0 1px;
 }
 
 .item {
-  padding: 0 .5rem;
+  padding: 0 3px;
 }
 
-.space {
+.letter {
+  color: #8910df;
+}
+
+.item:hover {
+  color: #8910df;
+}
+
+/* .space {
   border: 1px dashed #ccc;
   width: 1.5rem;
   height: 2rem;
   border-radius: 3px;
   margin: 0 10px 0 10px;
-  /* margin-left: 1rem; */
+  margin-left: 1rem;
   touch-action: none;
   user-select: none;
-}
+} */
 
 .container {
   display: flex;
@@ -148,32 +130,34 @@ button:hover {
 
 @media only screen and (max-width: 700px) {
   .list-container { 
-    width: 90%;
+    width: 95%;
   }
 
-  .letter-list, .clone {
-    font-size: 2.1rem;
-  }
-}
-
-@media only screen and (min-width: 1100px) {
-  .letter-list, .clone {
-    font-size: 2.75rem;
+  .item, .letter {
+    font-size: 1.75rem;
   }
 }
 
-@media only screen and (min-width: 1300px) {
+@media only screen and (min-width: 1000px) {
+  .list-container { 
+    width: 60%;
+  }
+
+  .item, .letter {
+    font-size: 2.5rem;
+  }
+
+  #logo {
+    width: 45%;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .list-container { 
+    width: 50%;
+  }
+
   #logo {
     width: 40%;
-  }
-
-  .letter-list, .clone {
-    font-size: 3.5rem;
-  }
-}
-
-@media only screen and (min-width: 1500px) {
-  #logo {
-    width: 30%;
   }
 }

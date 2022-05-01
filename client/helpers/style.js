@@ -6,6 +6,7 @@ export function getStyle(style, snapshot) {
   // patching the existing style
   return {
     ...style,
-    transition: `transform .01s ease`,
+    // opacity: 0,
+    transition: `transform .001s ease`,
   };
 }

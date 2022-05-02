@@ -28,7 +28,8 @@ a {
 }
 
 .letter-list {
-  color:#57227e;
+  color:#4c226a;
+  text-shadow: 1px 1px 1px gray;
   background-color: white;
   border-radius: 9px;
   box-shadow: 0 0 5px gray;
@@ -48,13 +49,18 @@ a {
   margin: 1% 0 3% 0;
 }
 
+.word {
+  display: flex;
+  align-items: center;
+}
+
 .clone {
-  color: #8910df;
   user-select: none;
+  opacity: 50%;
 }
 
 .dragging {
-  color: #8910df;
+  color: #6e22a4;
   opacity: 50%;
 }
 
@@ -71,11 +77,12 @@ a {
 }
 
 .letter {
-  color: #8910df;
+  color: #6e22a4;
 }
 
 .item:hover {
-  color: #8910df;
+  color: #6e22a4;
+  text-shadow: 2px 2px 3px gray;
 }
 
 /* .space {

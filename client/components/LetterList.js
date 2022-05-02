@@ -12,7 +12,7 @@ export const LetterList = ({ listId, letters }) => {
       {(dropProvided) => (
         <div
           {...dropProvided.droppableProps}
-          className="letter-list"
+          className="letter-list word"
           ref={dropProvided.innerRef}
         >
           {letters.map((letter, index) => (

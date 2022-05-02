@@ -120,9 +120,6 @@ class Main extends Component {
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <div className="list-container">
-          <a href="https://magic-spell-game.herokuapp.com/">
-            <img id="logo" src="/magicspell-V1.png" alt="rainbow logo" />
-          </a>
           <LetterPool listId="ITEMS" ITEMS={ITEMS} />
           {lists.map((list, i) => {
             return (

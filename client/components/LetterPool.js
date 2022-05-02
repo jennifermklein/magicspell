@@ -14,6 +14,10 @@ export const LetterPool = ({ listId, ITEMS }) => {
     >
       {(provided, snapshot) => (
         <div ref={provided.innerRef} className="letter-list" id="pool">
+          <a id="logo" href="https://magic-spell-game.herokuapp.com/">
+            <img src="/magicspell-V1.png" alt="rainbow logo" />
+          </a>
+          <p>A modern spell and say game</p>
           <div>
             {ITEMS.map((item, index) =>
               index <= ITEMS.length / 2 ? (

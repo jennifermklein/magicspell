@@ -6,16 +6,25 @@ html {
 
 body, #app {
   height: 100%;
-  margin: 0;
   user-select: none;
 }
 
 body {
-  background-color: #1be8ff37;
+  margin: 0;
+  /* background-color: rgba(65, 171, 200, 0.485); */
+  background-image: url("https://media.istockphoto.com/photos/rainbow-clouds-picture-id178777151?k=20&m=178777151&s=612x612&w=0&h=BHfwr9GXQH4Llmd9NuBhVuFp8h8-018agCUqZsnnutM=");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover
 }
 
-a {
-  text-align: center;
+p {
+  font-family: 'Indie Flower', cursive;
+  font-size: 1.75rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: -6% 0 0 10%;
 }
 
 .list-container {
@@ -24,14 +33,17 @@ a {
   width: 75%;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 0 auto;
+  padding-top: 40px;
+  padding-left: 15%;
+  margin: 8% auto 0 auto;
   user-select: none;
   touch-action: none;
+  z-index: 0;
 }
 
 .letter-list {
-  color:#631f93b7;
-  background-color: white;
+  color:#5a4477;
+  background-color: rgba(255, 255, 255, 0.85);
   border-radius: 9px;
   box-shadow: 0 0 5px gray;
   user-select: none;
@@ -40,6 +52,7 @@ a {
   padding: .5rem 1rem;
   min-height: 2.5rem;
   min-width: 1.5rem;
+  z-index: 0;
 }
 
 .letter-list:hover {
@@ -47,13 +60,15 @@ a {
 }
 
 #pool {
-  margin: 1% 0 3% 0;
+  margin: 0% 0 3% 0;
+  position: relative;
 }
 
 .word {
   display: flex;
   align-items: center;
   padding: .5rem 1rem .25rem 1rem;
+  margin: 0 2%;
 }
 
 .clone {
@@ -139,9 +154,16 @@ button:hover {
   background-color: #FF5714;
 }
 
-#logo {
+a {
+  z-index: 2;
+}
+
+#logo > img {
   width: 40%;
-  margin: 2% 0 4% 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: -12% 0 0 -31%;
 }
 
 @media only screen and (max-width: 500px) {
@@ -151,9 +173,14 @@ button:hover {
 
   .letter-list { 
     padding: .25rem .5rem;
+    min-height: 2rem;
+    min-width: 1.5rem;
   }
 
   .item, .letter {
+    font-size: 1rem;
+  }
+  p {
     font-size: 1rem;
   }
 }
@@ -171,17 +198,20 @@ button:hover {
     font-size: 1.75rem;
     padding: 1px;
   }
+  p {
+    font-size: 1rem;
+  }
+
 }
 
 @media only screen and (max-width: 850px) and (min-width: 701px) {
   .list-container { 
-    width: 85%;
+    width: 80%;
   }
 
   .item, .letter {
-    font-size: 2.25rem;
+    font-size: 2rem;
   }
-
 }
 
 @media only screen and (min-width: 1000px) {
@@ -193,9 +223,6 @@ button:hover {
     font-size: 2.75rem;
   }
 
-  #logo {
-    width: 50%;
-  }
 
 }
 
@@ -212,9 +239,5 @@ button:hover {
 
   .item, .letter {
     font-size: 3rem;
-  }
-
-  #logo {
-    width: 60%;
   }
 }

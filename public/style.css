@@ -1,13 +1,14 @@
 html {
   font-size: 14pt;
   height: 100%;
-  background-color: #e4ff1a0e;
+  user-select: none;
 }
 
 body, #app {
   height: 100%;
   margin-top: 0;
   user-select: none;
+  background-color: #1be8ff42;
 }
 
 .list-container {
@@ -23,20 +24,19 @@ body, #app {
 
 .letter-list {
   color:#57227e;
-  background-color: #6eeb831e;
-  border: 2px white solid;
+  background-color: white;
   border-radius: 9px;
-  box-shadow: 0 0 2px gray;
+  box-shadow: 0 0 5px gray;
   user-select: none;
   touch-action: none;
   font-family: 'Aleo', serif;
   padding: .5rem 1rem;
   min-height: 2rem;
-  min-width: 1rem;
+  min-width: 1.5rem;
 }
 
 .letter-list:hover {
-  box-shadow: 0 0 5px #ccc;
+  box-shadow: 0 0 10px gray;
 }
 
 #pool {
@@ -126,7 +126,7 @@ button:hover {
 }
 
 #logo {
-  width: 50%;
+  width: 40%;
   margin: 2% 0 4% 0;
 }
 
@@ -140,28 +140,26 @@ button:hover {
   }
 
   .item, .letter {
-    font-size: .75rem;
-    padding: 1px;
+    font-size: 1rem;
   }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 700px) and (min-width: 501px) {
   .list-container { 
     width: 90%;
   }
 
   .letter-list { 
-    padding: .25rem .5rem;
+    padding: .25rem .75rem;
   }
 
   .item, .letter {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     padding: 1px;
   }
-
 }
 
-@media only screen and (max-width: 850px) and (min-width: 700px) {
+@media only screen and (max-width: 850px) and (min-width: 701px) {
   .list-container { 
     width: 85%;
   }
@@ -170,16 +168,24 @@ button:hover {
     font-size: 2.25rem;
   }
 
+  #logo {
+    width: 38%;
+  }
 }
 
 @media only screen and (min-width: 1000px) {
   .list-container { 
-    width: 60%;
+    width: 65;
   }
 
   .item, .letter {
     font-size: 3rem;
   }
+
+  #logo {
+    width: 35%;
+  }
+
 }
 
 @media only screen and (min-width: 1200px) {
@@ -192,13 +198,14 @@ button:hover {
   }
 
   #logo {
-    width: 45%;
+    width: 35%;
   }
+
 }
 
 @media only screen and (min-width: 1400px) {
   .list-container { 
-    width: 50%;
+    width: 58%;
   }
 
   .item, .letter {
@@ -206,6 +213,6 @@ button:hover {
   }
 
   #logo {
-    width: 40%;
+    width: 30%;
   }
 }

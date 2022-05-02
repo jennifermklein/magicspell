@@ -28,8 +28,7 @@ a {
 }
 
 .letter-list {
-  color:#4c226a;
-  text-shadow: 1px 1px 1px gray;
+  color:#631f93b7;
   background-color: white;
   border-radius: 9px;
   box-shadow: 0 0 5px gray;
@@ -37,7 +36,7 @@ a {
   touch-action: none;
   font-family: 'Aleo', serif;
   padding: .5rem 1rem;
-  min-height: 2rem;
+  min-height: 2.5rem;
   min-width: 1.5rem;
 }
 
@@ -52,6 +51,7 @@ a {
 .word {
   display: flex;
   align-items: center;
+  padding: .5rem 1rem .25rem 1rem;
 }
 
 .clone {

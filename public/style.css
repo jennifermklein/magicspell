@@ -8,8 +8,10 @@ body, #app {
   height: 100%;
   margin: 0;
   user-select: none;
-  background-color: #1be8ff23;
-  border: 5px solid white;
+}
+
+body {
+  background-color: #1be8ff37;
 }
 
 a {

@@ -17,7 +17,7 @@ export const LetterPool = ({ listId, ITEMS }) => {
           <a id="logo" href="https://magic-spell-game.herokuapp.com/">
             <img src="/magicspell-V1.png" alt="rainbow logo" />
           </a>
-          <p>A modern spell and say game</p>
+          <p>A modern speak and spell game</p>
           <div>
             {ITEMS.map((item, index) =>
               index <= ITEMS.length / 2 ? (

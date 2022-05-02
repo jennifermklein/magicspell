@@ -6,9 +6,14 @@ html {
 
 body, #app {
   height: 100%;
-  margin-top: 0;
+  margin: 0;
   user-select: none;
   background-color: #1be8ff23;
+  border: 5px solid white;
+}
+
+a {
+  text-align: center;
 }
 
 .list-container {
@@ -168,9 +173,6 @@ button:hover {
     font-size: 2.25rem;
   }
 
-  #logo {
-    width: 38%;
-  }
 }
 
 @media only screen and (min-width: 1000px) {
@@ -179,11 +181,11 @@ button:hover {
   }
 
   .item, .letter {
-    font-size: 3rem;
+    font-size: 2.75rem;
   }
 
   #logo {
-    width: 35%;
+    width: 50%;
   }
 
 }
@@ -192,15 +194,6 @@ button:hover {
   .list-container { 
     width: 60%;
   }
-
-  .item, .letter {
-    font-size: 3rem;
-  }
-
-  #logo {
-    width: 35%;
-  }
-
 }
 
 @media only screen and (min-width: 1400px) {
@@ -209,10 +202,10 @@ button:hover {
   }
 
   .item, .letter {
-    font-size: 3.5rem;
+    font-size: 3rem;
   }
 
   #logo {
-    width: 30%;
+    width: 60%;
   }
 }

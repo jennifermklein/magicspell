@@ -17,7 +17,7 @@ export const LetterPool = ({ listId, ITEMS }) => {
           <a id="logo" href="#">
             <img src="/magicspell-V1.png" alt="rainbow logo" />
           </a>
-          <p>drag and drop letters into the box below</p>
+          <p>drag letters into the box below</p>
           <div>
             {ITEMS.map((item, index) =>
               index <= ITEMS.length / 2 ? (
